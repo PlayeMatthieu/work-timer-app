@@ -1,0 +1,11 @@
+<ion-content class="ion-no-padding ion-no-margin">
+
+
+
+  <!--  Ion fab-->
+  <ion-fab horizontal="center" vertical="bottom">
+    <ion-fab-button (click)="toggleTimer()" size="large">
+      <ion-icon [name]="timeActive ? 'stop-outline': 'play-outline'"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>
