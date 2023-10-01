@@ -5,7 +5,11 @@
   "homepage": "https://ionicframework.com/",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "serve:web": "ionic serve",
+    "serve:ios": "ionic capacitor run ios --l --external",
+    "serve:android": "ionic capacitor run android --l --external",
+    "deploy:ios:staging": "ionic cap copy ios; ionic cap open ios",
+    "deploy:android:staging": "ionic cap copy android; ionic cap open android",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
