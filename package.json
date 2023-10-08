@@ -5,7 +5,7 @@
   "homepage": "https://ionicframework.com/",
   "scripts": {
     "ng": "ng",
-    "serve:web": "ionic serve",
+    "serve:web": "ionic serve --locale nl-BE",
     "serve:ios": "ionic capacitor run ios --l --external",
     "serve:android": "ionic capacitor run android --l --external",
     "deploy:ios:staging": "ionic cap copy ios; ionic cap open ios",
@@ -33,6 +33,7 @@
     "@capacitor/status-bar": "5.0.6",
     "@ionic/angular": "^7.0.0",
     "ionicons": "^7.0.0",
+    "moment": "^2.29.4",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.13.0"

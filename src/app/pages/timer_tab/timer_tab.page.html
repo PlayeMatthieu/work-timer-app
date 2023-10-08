@@ -1,6 +1,32 @@
-<ion-content class="ion-no-padding ion-no-margin">
+<ion-content class="ion-padding">
 
 
+  <h2>{{activeDay | date:'EEEE, dd/MM/YYYY':''}}</h2>
+  <p>WeekNr: {{weekNumber}}</p>
+  <div class="navigation-container">
+    <ion-button (click)="setToday()" shape="round">Vandaag</ion-button>
+
+    <div class="week-switcher">
+      <div class="week-switcher-buttons">
+        <div class="button" (click)="setPreviousWeek()">
+          <ion-icon name="chevron-back-outline"></ion-icon>
+        </div>
+        <div class="button" (click)="setNextWeek()">
+          <ion-icon name="chevron-forward-outline"></ion-icon>
+        </div>
+      </div>
+      <div class="current-week-display">
+        <span>{{firstDayOfWeek | date:'MMMM dd'}} - {{lastDayOfWeek | date:'MMMM dd'}}</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="week-display">
+    <div class="week-day" *ngFor="let day of weekDays" [class.active]="day.isToday">
+      <p>{{day.shortName}}</p>
+      <p>{{day.date | date:'dd/MM'}}</p>
+    </div>
+  </div>
 
   <!--  Ion fab-->
   <ion-fab horizontal="center" vertical="bottom">
