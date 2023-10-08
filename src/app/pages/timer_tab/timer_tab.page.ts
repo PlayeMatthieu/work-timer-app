@@ -70,6 +70,9 @@ export class Timer_tab implements OnInit{
 
   public setActiveDay(day: Date) {
     this.activeDay = day;
+    this.weekDays.forEach((weekday) => {
+      weekday.isToday = moment(weekday.date).isSame(this.activeDay, 'day');
+    });
   }
 
   // Get all weekdays of the current week

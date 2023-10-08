@@ -1,10 +1,12 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Work timer app</ion-title>
+  </ion-toolbar>
+</ion-header>
+
 <ion-content class="ion-padding">
-
-
-  <h2>{{activeDay | date:'EEEE, dd/MM/YYYY':''}}</h2>
-  <p>WeekNr: {{weekNumber}}</p>
   <div class="navigation-container">
-    <ion-button (click)="setToday()" shape="round">Vandaag</ion-button>
+    <ion-button (click)="setToday()" size="medium" shape="round">Vandaag</ion-button>
 
     <div class="week-switcher">
       <div class="week-switcher-buttons">
@@ -16,16 +18,20 @@
         </div>
       </div>
       <div class="current-week-display">
-        <span>{{firstDayOfWeek | date:'MMMM dd'}} - {{lastDayOfWeek | date:'MMMM dd'}}</span>
+        <span>{{firstDayOfWeek | date:'MMM dd'}} - {{lastDayOfWeek | date:'MMM dd'}}</span>
       </div>
     </div>
   </div>
 
   <div class="week-display">
-    <div class="week-day" *ngFor="let day of weekDays" [class.active]="day.isToday">
+    <div class="week-day" *ngFor="let day of weekDays" [class.active]="day.isToday" (click)="setActiveDay(day.date)">
       <p>{{day.shortName}}</p>
-      <p>{{day.date | date:'dd/MM'}}</p>
+      <p>{{day.date | date:'dd'}}</p>
     </div>
+  </div>
+
+  <div class="selected-day-container">
+    <h2>{{activeDay | date:'EEEE, dd MMMM YYYY'}}</h2>
   </div>
 
   <!--  Ion fab-->

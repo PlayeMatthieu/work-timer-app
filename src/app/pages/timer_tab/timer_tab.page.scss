@@ -1,21 +1,19 @@
 .navigation-container {
-  margin-top: 32px;
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-between;
   align-items: center;
-  gap: 8px;
 }
 
 .week-switcher {
-  padding: 4px;
+  padding: 4px 8px;
   background-color: white;
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 8px;
   border-radius: 16px;
-  border: 1px solid black;
-  width: 100%;
+  border: 1px solid lightgray;
+  max-height: 50px;
 
   .week-switcher-buttons {
     display: flex;
@@ -26,8 +24,8 @@
     .button {
       padding: 8px;
       border-radius: 50%;
-      width: 32px;
-      height: 32px;
+      width: 42px;
+      height: 42px;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -40,15 +38,30 @@
   .current-week-display {
     font-size: 16px;
     font-weight: bold;
+
   }
 }
 
 .week-display {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid lightgray;
+  border-radius: 8px;
+  margin-top: 16px;
   .week-day {
-
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 8px;
+    cursor: pointer;
+    width: 100%;
   }
 
   .active {
-    background-color: lightgray;
+    background-color: var(--ion-color-primary);
+    color: white;
+    border-radius: 4px;
   }
 }
