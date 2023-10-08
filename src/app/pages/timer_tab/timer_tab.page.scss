@@ -54,14 +54,40 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 8px;
+    gap: 8px;
+    padding: 4px;
     cursor: pointer;
     width: 100%;
-  }
 
-  .active {
-    background-color: var(--ion-color-primary);
-    color: white;
-    border-radius: 4px;
+    span {
+      font-size: 16px;
+    }
+
+    .day {
+      text-transform: uppercase;
+    }
+
+    .date {
+      color: lightgray;
+      width: 34px;
+      height: 34px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .active {
+      background-color: var(--ion-color-primary);
+      color: white;
+      border-radius: 50%;
+    }
+
+    .totalTime {
+      font-size: 12px;
+      background-color: white;
+      border: 1px solid lightgray;
+      border-radius: 4px;
+      padding: 0 4px;
+    }
   }
 }

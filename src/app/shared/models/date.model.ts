@@ -5,5 +5,6 @@ export interface Weekday {
   dayNumber: number;
   weekNumber: number;
   isToday: boolean;
+  totalTime: string;
 }
 

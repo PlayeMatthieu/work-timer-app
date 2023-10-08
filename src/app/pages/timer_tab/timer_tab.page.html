@@ -24,9 +24,10 @@
   </div>
 
   <div class="week-display">
-    <div class="week-day" *ngFor="let day of weekDays" [class.active]="day.isToday" (click)="setActiveDay(day.date)">
-      <p>{{day.shortName}}</p>
-      <p>{{day.date | date:'dd'}}</p>
+    <div class="week-day" *ngFor="let day of weekDays" (click)="setActiveDay(day.date)">
+      <span class="day">{{day.shortName}}</span>
+      <span class="date" [class.active]="day.isToday">{{day.date | date:'dd'}}</span>
+      <span class="totalTime">{{day.totalTime}}</span>
     </div>
   </div>
 

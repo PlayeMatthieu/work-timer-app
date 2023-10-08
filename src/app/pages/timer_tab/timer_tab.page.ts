@@ -82,11 +82,12 @@ export class Timer_tab implements OnInit{
       const day = moment(this.firstDayOfWeek).add(i, 'days').toDate();
       this.weekDays.push({
         name: moment(day).format('dddd'),
-        shortName: moment(day).format('ddd'),
+        shortName: moment(day).format('dd').charAt(0),
         date: day,
         dayNumber: moment(day).isoWeekday(),
         weekNumber: moment(day).isoWeek(),
-        isToday: moment(day).isSame(this.today, 'day')
+        isToday: moment(day).isSame(this.today, 'day'),
+        totalTime: '0:15'
       });
     }
   }
