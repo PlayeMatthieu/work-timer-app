@@ -1,7 +1,7 @@
 export interface Weekday {
   name: string;
   shortName: string;
-  date: Date;
+  date: string;
   dayNumber: number;
   weekNumber: number;
   isToday: boolean;

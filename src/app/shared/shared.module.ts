@@ -2,10 +2,11 @@ import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {IonicModule} from "@ionic/angular";
 import {FormsModule} from "@angular/forms";
+import {SwipeGestureDirective} from "./directives/swipe-gesture";
 
 
 @NgModule({
-  declarations: [],
+  declarations: [SwipeGestureDirective],
   imports: [
     CommonModule,
     IonicModule,
@@ -14,7 +15,8 @@ import {FormsModule} from "@angular/forms";
   exports: [
     CommonModule,
     IonicModule,
-    FormsModule
+    FormsModule,
+    SwipeGestureDirective
   ]
 })
 export class SharedModule {

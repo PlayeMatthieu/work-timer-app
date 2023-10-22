@@ -1,8 +1,9 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {SharedModule} from "../../shared/shared.module";
 import {Weekday} from "../../shared/models/date.model";
-import moment from "moment";
+import moment, {Moment} from "moment";
 import 'moment/locale/nl-be';
+import {IonDatetime} from "@ionic/angular";
 
 
 @Component({
@@ -14,8 +15,8 @@ import 'moment/locale/nl-be';
 })
 export class Timer_tab implements OnInit{
 
-  public today: Date = moment().toDate();
-  public activeDay: Date;
+  public today: Moment = moment(new Date(), moment.ISO_8601);
+  public activeDay: string;
   public weekNumber: number = 1;
   public timeActive: boolean = false;
   public startTime: Date;
@@ -24,6 +25,9 @@ export class Timer_tab implements OnInit{
   public weekDays: Weekday[] = [];
   public firstDayOfWeek: Date;
   public lastDayOfWeek: Date;
+  public showCalendar: boolean = false;
+
+  @ViewChild('datetime', {static: false}) datetime: IonDatetime;
 
   constructor() {
     moment().locale('nl-be');
@@ -61,14 +65,18 @@ export class Timer_tab implements OnInit{
     }
   }
 
-  public setToday() {
+  public async setToday() {
     // Set active day to today
-    this.activeDay = this.today;
+    this.activeDay = this.today.format();
     this.getCurrentWeekNumber(this.activeDay);
     this.getWeekDays();
+    if (this.showCalendar) {
+      await this.datetime.reset(this.today.format());
+      await this.datetime.cancel(true);
+    }
   }
 
-  public setActiveDay(day: Date) {
+  public setActiveDay(day: string) {
     this.activeDay = day;
     this.weekDays.forEach((weekday) => {
       weekday.isToday = moment(weekday.date).isSame(this.activeDay, 'day');
@@ -83,7 +91,7 @@ export class Timer_tab implements OnInit{
       this.weekDays.push({
         name: moment(day).format('dddd'),
         shortName: moment(day).format('dd').charAt(0),
-        date: day,
+        date: day.toISOString(),
         dayNumber: moment(day).isoWeekday(),
         weekNumber: moment(day).isoWeek(),
         isToday: moment(day).isSame(this.today, 'day'),
@@ -92,7 +100,7 @@ export class Timer_tab implements OnInit{
     }
   }
 
-  private getCurrentWeekNumber(date: Date): void  {
+  private getCurrentWeekNumber(date: string): void  {
     this.weekNumber = moment(date).isoWeek();
     this.getFirstAndLastDayOfWeek();
   }
@@ -113,4 +121,19 @@ export class Timer_tab implements OnInit{
     this.firstDayOfWeek = moment().isoWeek(this.weekNumber).startOf('isoWeek').toDate();
     this.lastDayOfWeek = moment().isoWeek(this.weekNumber).endOf('isoWeek').toDate();
   }
+
+  public toggleDateSelect() {
+    this.showCalendar = !this.showCalendar;
+  }
+
+  public cancelCalendar() {
+    this.showCalendar = false;
+  }
+
+  public setSelectedCalendarValue() {
+    this.setActiveDay(this.activeDay);
+    this.getCurrentWeekNumber(this.activeDay);
+    this.getWeekDays();
+  }
+
 }

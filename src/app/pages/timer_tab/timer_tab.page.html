@@ -5,26 +5,37 @@
 </ion-header>
 
 <ion-content class="ion-padding">
-  <div class="navigation-container">
-    <ion-button (click)="setToday()" size="medium" shape="round">Vandaag</ion-button>
 
-    <div class="week-switcher">
-      <div class="week-switcher-buttons">
-        <div class="button" (click)="setPreviousWeek()">
-          <ion-icon name="chevron-back-outline"></ion-icon>
-        </div>
-        <div class="button" (click)="setNextWeek()">
-          <ion-icon name="chevron-forward-outline"></ion-icon>
-        </div>
-      </div>
-      <div class="current-week-display">
-        <span>{{firstDayOfWeek | date:'MMM dd'}} - {{lastDayOfWeek | date:'MMM dd'}}</span>
-      </div>
+  <ion-modal [keepContentsMounted]="true" [isOpen]="showCalendar" (didDismiss)="cancelCalendar()">
+    <ng-template>
+      <ion-datetime id="datetime" #datetime
+                    presentation="date"
+                    [showDefaultButtons]="true"
+                    [(ngModel)]="activeDay"
+                    (ionChange)="setSelectedCalendarValue()">
+        <ion-buttons slot="buttons">
+          <ion-button color="primary" (click)="setToday()">Today</ion-button>
+          <ion-button color="primary" (click)="datetime.cancel(true)">Annuleer</ion-button>
+          <ion-button color="primary" (click)="datetime.confirm(true)">Bevestig</ion-button>
+        </ion-buttons>
+      </ion-datetime>
+    </ng-template>
+  </ion-modal>
+
+  <ion-datetime-button datetime="datetime" id="fake-click"></ion-datetime-button>
+
+  <div class="date-selector">
+    <h2>{{firstDayOfWeek | date:'MMMM YYYY'}}</h2>
+    <div class="icon-button" (click)="toggleDateSelect()">
+      <ion-icon name="calendar-outline"></ion-icon>
     </div>
   </div>
 
   <div class="week-display">
-    <div class="week-day" *ngFor="let day of weekDays" (click)="setActiveDay(day.date)">
+    <div class="week-day" *ngFor="let day of weekDays" (click)="setActiveDay(day.date)"
+         appSwipeGesture
+         (onSwipeLeft)="setNextWeek()"
+         (onSwipeRight)="setPreviousWeek()">
       <span class="day">{{day.shortName}}</span>
       <span class="date" [class.active]="day.isToday">{{day.date | date:'dd'}}</span>
       <span class="totalTime">{{day.totalTime}}</span>
@@ -33,6 +44,10 @@
 
   <div class="selected-day-container">
     <h2>{{activeDay | date:'EEEE, dd MMMM YYYY'}}</h2>
+
+    <ion-card class="ion-no-margin">
+      <p>test</p>
+    </ion-card>
   </div>
 
   <!--  Ion fab-->
