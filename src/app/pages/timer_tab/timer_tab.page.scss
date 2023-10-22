@@ -2,7 +2,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 8px;
+  padding: 24px 8px;
   .week-day {
     display: flex;
     flex-direction: column;
@@ -41,6 +41,26 @@
       border: 1px solid lightgray;
       border-radius: 4px;
       padding: 0 4px;
+    }
+  }
+}
+
+.registration-card {
+  padding: 16px 8px;
+  display: grid;
+  height: 100%;
+  grid-template-columns: 0.5fr 1fr;
+  gap: 16px;
+
+  .total-time-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    gap: 16px;
+    .total {
+      font-size: 32px;
+      font-weight: bold;
     }
   }
 }

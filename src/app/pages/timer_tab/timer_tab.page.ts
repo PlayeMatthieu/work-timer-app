@@ -1,6 +1,6 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {SharedModule} from "../../shared/shared.module";
-import {Weekday} from "../../shared/models/date.model";
+import {IWeekday} from "../../shared/models/date.model";
 import moment, {Moment} from "moment";
 import 'moment/locale/nl-be';
 import {IonDatetime} from "@ionic/angular";
@@ -22,7 +22,7 @@ export class Timer_tab implements OnInit{
   public startTime: Date;
   public endTime: Date;
   public timeElapsed: number;
-  public weekDays: Weekday[] = [];
+  public weekDays: IWeekday[] = [];
   public firstDayOfWeek: Date;
   public lastDayOfWeek: Date;
   public showCalendar: boolean = false;
