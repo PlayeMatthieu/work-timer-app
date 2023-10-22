@@ -21,25 +21,26 @@ export class SwipeGestureDirective implements AfterViewInit {
       threshold: 0,
       direction: 'x',
       onStart: (ev) => {
-        this.swipeStart = true;
         this.swipePositionX = ev.currentX;
       },
       onMove: (ev) => {
-        if (ev.deltaY > 50 || ev.deltaY < -50) {
-          this.swipeStart = false;
-        }
+        // Prevent vertical scroll
+        this.swipeStart = !(ev.deltaY > 50 || ev.deltaY < -50);
       },
       onEnd: (ev) => {
-        if (this.swipeStart) {
+        // Look if the user swiped far enough, and if so, in which direction
+        // Look for 0 movement for single click action
+        if (this.swipeStart && ev.deltaX !== 0) {
           this.zone.run(() => {
             if (ev.currentX > this.swipePositionX) {
+              // Left to right swipe
               this.swipeRight();
             } else {
+              // Right to left swipe
               this.swipeLeft();
             }
           });
           this.swipeStart = false;
-          this.swipePositionX = 0;
         }
       }
     });

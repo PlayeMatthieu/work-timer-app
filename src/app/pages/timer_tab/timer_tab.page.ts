@@ -77,6 +77,7 @@ export class Timer_tab implements OnInit{
   }
 
   public setActiveDay(day: string) {
+    console.log(day)
     this.activeDay = day;
     this.weekDays.forEach((weekday) => {
       weekday.isToday = moment(weekday.date).isSame(this.activeDay, 'day');

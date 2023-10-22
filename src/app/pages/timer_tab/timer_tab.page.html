@@ -1,6 +1,24 @@
 <ion-header>
   <ion-toolbar color="primary">
-    <ion-title>Work timer app</ion-title>
+    <ion-title>{{activeDay | date:'EEEE, dd MMMM YYYY'}}</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="toggleDateSelect()">
+        <ion-icon slot="icon-only" name="calendar-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+  <ion-toolbar color="primary">
+    <div class="week-display">
+      <div class="week-day" *ngFor="let day of weekDays"
+           appSwipeGesture
+           (onSwipeLeft)="setNextWeek()"
+           (onSwipeRight)="setPreviousWeek()"
+           (click)="setActiveDay(day.date)">
+        <span class="day">{{day.shortName}}</span>
+        <span class="date" [class.active]="day.isToday">{{day.date | date:'dd'}}</span>
+        <span class="totalTime">{{day.totalTime}}</span>
+      </div>
+    </div>
   </ion-toolbar>
 </ion-header>
 
@@ -24,31 +42,11 @@
 
   <ion-datetime-button datetime="datetime" id="fake-click"></ion-datetime-button>
 
-  <div class="date-selector">
-    <h2>{{firstDayOfWeek | date:'MMMM YYYY'}}</h2>
-    <div class="icon-button" (click)="toggleDateSelect()">
-      <ion-icon name="calendar-outline"></ion-icon>
-    </div>
-  </div>
+  <ion-card class="ion-no-margin">
+    <p>{{firstDayOfWeek}}</p>
+    <p>{{lastDayOfWeek}}</p>
+  </ion-card>
 
-  <div class="week-display">
-    <div class="week-day" *ngFor="let day of weekDays" (click)="setActiveDay(day.date)"
-         appSwipeGesture
-         (onSwipeLeft)="setNextWeek()"
-         (onSwipeRight)="setPreviousWeek()">
-      <span class="day">{{day.shortName}}</span>
-      <span class="date" [class.active]="day.isToday">{{day.date | date:'dd'}}</span>
-      <span class="totalTime">{{day.totalTime}}</span>
-    </div>
-  </div>
-
-  <div class="selected-day-container">
-    <h2>{{activeDay | date:'EEEE, dd MMMM YYYY'}}</h2>
-
-    <ion-card class="ion-no-margin">
-      <p>test</p>
-    </ion-card>
-  </div>
 
   <!--  Ion fab-->
   <ion-fab horizontal="center" vertical="bottom">

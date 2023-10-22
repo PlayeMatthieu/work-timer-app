@@ -1,18 +1,8 @@
-
-.date-selector {
-  display: flex;
-  width: 100%;
-  justify-content: space-between;
-  align-items: center;
-}
-
 .week-display {
   display: flex;
   justify-content: center;
   align-items: center;
-  border: 1px solid lightgray;
-  border-radius: 8px;
-  margin-top: 16px;
+  padding: 8px;
   .week-day {
     display: flex;
     flex-direction: column;
@@ -41,14 +31,13 @@
     }
 
     .active {
-      background-color: var(--ion-color-primary);
-      color: white;
+      background-color: white;
+      color: var(--ion-color-primary);
       border-radius: 50%;
     }
 
     .totalTime {
       font-size: 12px;
-      background-color: white;
       border: 1px solid lightgray;
       border-radius: 4px;
       padding: 0 4px;
